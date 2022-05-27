@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const JobItem = ({ job: { title, type, keywords, job, location } }) => {
+const JobItem = ({ job: { badgeType, title, type, keywords, job, textDay, location } }) => {
     return (
-        <li className="new">
+        <li className={badgeType}>
             <div className="title_job">
                 <a href="#none" className="link_title">
                     <strong>{title}<em>{type}</em></strong>
@@ -15,7 +15,7 @@ const JobItem = ({ job: { title, type, keywords, job, location } }) => {
             <div className="desc_job">
                 <span className="badge_type">{job}</span>
                 <div className="wrap_txt">
-                    <span className="txt_day">Today</span>
+                    <span className="txt_day">{textDay}</span>
                     <span className="txt_location">{location}</span>
                 </div>
             </div>
