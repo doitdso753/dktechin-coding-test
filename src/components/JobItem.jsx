@@ -1,25 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const JobItem = ({children}) => {
+const JobItem = ({ job: { title, type, keywords, job, location } }) => {
     return (
         <li className="new">
             <div className="title_job">
                 <a href="#none" className="link_title">
-                    <strong>프론트엔드 개발자<em>FT팀</em></strong>
+                    <strong>{title}<em>{type}</em></strong>
                 </a>
                 <span className="bundle_badge">
-                    <a href="#none">WEB DEVELOPMENT</a>
-                    <a href="#none">REACT</a>
-                    <a href="#none">VUE</a>
-                    <a href="#none">ES6</a>
+                    {keywords.map((keyword, idx) => (<a key={idx} href="#none">{keyword}</a>))}
                 </span>
             </div>
             <div className="desc_job">
-                <span className="badge_type">Front-end</span>
+                <span className="badge_type">{job}</span>
                 <div className="wrap_txt">
                     <span className="txt_day">Today</span>
-                    <span className="txt_location">제주</span>
+                    <span className="txt_location">{location}</span>
                 </div>
             </div>
         </li>

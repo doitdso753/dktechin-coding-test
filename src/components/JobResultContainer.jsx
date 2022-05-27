@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useSelector, useDispatch } from "react-redux";
+import { fetchJobList } from '../reducers/jobReducer';
 import JobItem from "./JobItem";
 
 const JobResultContainer = () => {
+    const dispatch = useDispatch();
+    const { jobList, isLoading } = useSelector(state => state.jobs);
+
+    useEffect(() => {
+        dispatch(fetchJobList());
+    }, [dispatch]);
+
     return (
         <main className="doc-main">
             <section className="inner-main">
@@ -11,7 +20,10 @@ const JobResultContainer = () => {
                     <article id="mainContent" className="content-article">
                         <h3 className="screen_out">채용 목록</h3>
                         <ul className="list_job">
-                            <JobItem />
+                            {!isLoading ?
+                                jobList.map((job, idx) => (<JobItem key={idx} job={job} />))
+                                : <div>Loading...</div>
+                            }
                         </ul>
                     </article>
                 </div>
